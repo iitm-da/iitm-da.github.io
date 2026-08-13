@@ -1,0 +1,40 @@
+name: Refresh course list
+
+# A new course lives in its own repo, so a push there cannot trigger a build
+# here — the daily schedule is what keeps this page current. Use "Run workflow"
+# if you have just published a course and don't want to wait.
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'courses.json'
+  schedule:
+    - cron: '17 4 * * *'      # 04:17 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  courses:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build courses.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ORG: ${{ github.repository_owner }}
+        run: python3 .github/build_courses.py
+
+      - name: Commit if it changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add courses.json
+          if git diff --quiet --cached; then
+            echo "course list unchanged"
+          else
+            git commit -m "chore: refresh course list"
+            git push
+          fi

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Course materials — Dr. Arun B Ayyar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500;700&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --paper:#E9EDEF; --card:#FFFFFF; --ink:#14222B; --soft:#53666F;
+  --line:#C3CFD5; --hair:#DCE4E8;
+  --t-cls:#125F9E; --t-grp:#0E7A55; --t-anc:#8F5D0A; --t-asr:#B02F3B;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --disp:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;
+  --body:"Public Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+*,*::before,*::after{font-variant-ligatures:none;font-feature-settings:"liga" 0,"clig" 0,"calt" 0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);
+  -webkit-font-smoothing:antialiased;line-height:1.5;min-height:100vh;
+  display:flex;flex-direction:column}
+.bar{height:4px;background:var(--t-asr);width:100%}
+.wrap{width:100%;max-width:900px;margin:0 auto;padding:52px 26px 26px;flex:1}
+
+.eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.17em;
+  text-transform:uppercase;color:var(--soft);margin-bottom:11px;display:flex;gap:10px;align-items:center}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(32px,5.4vw,48px);line-height:1.06;
+  letter-spacing:-.022em;margin-bottom:12px}
+p.lede{font-size:16px;color:#31444F;max-width:64ch}
+.who{font-family:var(--mono);font-size:12px;color:var(--soft);margin-top:16px;
+  padding-top:13px;border-top:1px solid var(--line)}
+
+h2{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--soft);margin:34px 0 12px;
+  display:flex;gap:10px;align-items:center}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+
+.list{display:flex;flex-direction:column;gap:12px}
+a.course{display:block;background:var(--card);border:1px solid var(--hair);
+  border-left:4px solid var(--t-cls);padding:16px 19px;text-decoration:none;color:inherit;
+  transition:border-color .14s ease,transform .14s ease,box-shadow .14s ease}
+a.course:hover{border-color:var(--line);transform:translateY(-1px);
+  box-shadow:0 5px 16px rgba(20,34,43,.10)}
+a.course .code{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--t-cls)}
+a.course .name{font-family:var(--disp);font-weight:700;font-size:21px;line-height:1.18;
+  margin:6px 0 6px;letter-spacing:-.015em}
+a.course .meta{font-family:var(--mono);font-size:10.5px;color:var(--soft)}
+
+.note{background:#FFFBF2;border:1px solid var(--hair);border-left:4px solid var(--t-anc);
+  padding:12px 16px;font-size:13.5px;margin-top:28px;line-height:1.46}
+.note code{font-family:var(--mono);font-size:12.5px}
+#status{font-family:var(--mono);font-size:12px;color:var(--soft);padding:18px 0}
+#status.err{color:var(--t-asr)}
+
+footer{border-top:1px solid var(--line);margin:44px auto 0;padding:16px 26px 28px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--soft);
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between;
+  max-width:900px;width:100%}
+footer a{color:var(--soft)}
+@media (max-width:520px){ .wrap{padding:34px 18px 20px} }
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<div class="wrap">
+  <div class="eyebrow">IIT Madras · Data Analytics</div>
+  <h1>Course materials</h1>
+  <p class="lede">Lecture decks, notebooks and datasets for the courses I teach. Each course opens as a
+  set of self-contained pages — no install, no login.</p>
+  <div class="who">Dr. Arun B Ayyar</div>
+
+  <h2>Courses</h2>
+  <div class="list" id="out"></div>
+  <div id="status">Loading…</div>
+
+  <div class="note">
+    Decks are keyboard-driven: <b>←</b> <b>→</b> or space to move, <b>F</b> for fullscreen,
+    <b>P</b> to print, and <b>T</b> to run the animation on any slide that has a <i>Trace</i> button.
+  </div>
+</div>
+
+<footer>
+  <div>Dr. Arun B Ayyar · IIT Madras</div>
+  <div><a href="https://github.com/iitm-da">github.com/iitm-da</a></div>
+</footer>
+
+<script>
+/* courses.json is rebuilt by .github/workflows/courses.yml — on push, daily,
+   and on demand. A course appears here as soon as its own repo has a Pages
+   site published; nothing in this file needs editing. If courses.json is
+   missing we read the org straight from the GitHub API instead. */
+const ORG = 'iitm-da';
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+                          .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+
+function render(courses, note){
+  const out = document.getElementById('out'), status = document.getElementById('status');
+  if(!courses.length){
+    status.textContent = 'No course sites published yet.';
+    return;
+  }
+  out.innerHTML = courses.map(c => `
+    <a class="course" href="${esc(c.url)}">
+      <div class="code">${esc(c.code || c.name.toUpperCase())}</div>
+      <div class="name">${esc(c.description || c.name)}</div>
+      <div class="meta">updated ${esc(c.updated || '—')}</div>
+    </a>`).join('');
+  status.textContent = note || '';
+  if(!note) status.style.display = 'none';
+}
+
+(async () => {
+  try{
+    const r = await fetch('courses.json', {cache:'no-cache'});
+    if(!r.ok) throw new Error('no courses.json');
+    const d = await r.json();
+    render(d.courses || [], '');
+  }catch(e){
+    try{
+      const r = await fetch(`https://api.github.com/orgs/${ORG}/repos?per_page=100&type=public`);
+      if(!r.ok) throw new Error('GitHub API ' + r.status);
+      const repos = (await r.json())
+        .filter(x => x.has_pages && !x.archived && !x.fork && x.name !== `${ORG}.github.io`)
+        .sort((a,b) => a.name.localeCompare(b.name))
+        .map(x => ({name:x.name, code:x.name.toUpperCase(), description:x.description || x.name,
+                    url:`/${x.name}/`, updated:(x.pushed_at || '').slice(0,10)}));
+      render(repos, 'Read live from GitHub — the scheduled refresh has not run yet.');
+    }catch(e2){
+      const s = document.getElementById('status');
+      s.className = 'err';
+      s.textContent = 'Could not load the course list (' + e2.message + '). See github.com/' + ORG;
+    }
+  }
+})();
+</script>
+</body>
+</html>
