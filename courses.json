@@ -1,6 +1,6 @@
 {
  "org": "iitm-da",
- "generated": "2026-09-01 09:25 UTC",
+ "generated": "2026-09-02 08:48 UTC",
  "courses": [
   {
    "name": "da2402",
@@ -8,7 +8,7 @@
    "description": "Course Materials for DA2402",
    "url": "/da2402/",
    "repo": "https://github.com/iitm-da/da2402",
-   "updated": "2026-08-27"
+   "updated": "2026-09-02"
   }
  ]
 }
