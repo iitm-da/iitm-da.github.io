@@ -1,6 +1,6 @@
 {
  "org": "iitm-da",
- "generated": "2026-11-22 12:37 UTC",
+ "generated": "2026-11-22 15:33 UTC",
  "courses": [
   {
    "name": "da2402",
@@ -13,7 +13,7 @@
   {
    "name": "finance-ml",
    "code": "FINANCE-ML",
-   "description": "Machine learning for finance: time series forecasting and generative models",
+   "description": "AI for Finance",
    "url": "/finance-ml/",
    "repo": "https://github.com/iitm-da/finance-ml",
    "updated": "2026-11-22"
