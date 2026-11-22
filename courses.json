@@ -1,6 +1,6 @@
 {
  "org": "iitm-da",
- "generated": "2026-11-22 15:33 UTC",
+ "generated": "2026-11-22 16:27 UTC",
  "courses": [
   {
    "name": "da2402",
@@ -9,6 +9,14 @@
    "url": "/da2402/",
    "repo": "https://github.com/iitm-da/da2402",
    "updated": "2026-11-07"
+  },
+  {
+   "name": "da5500w",
+   "code": "DA5500W",
+   "description": "DA5500W \u00b7 Data Mining: Concepts and Techniques",
+   "url": "/da5500w/",
+   "repo": "https://github.com/iitm-da/da5500w",
+   "updated": "2026-11-22"
   },
   {
    "name": "finance-ml",
