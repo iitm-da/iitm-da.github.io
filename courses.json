@@ -1,6 +1,6 @@
 {
  "org": "iitm-da",
- "generated": "2026-11-22 16:27 UTC",
+ "generated": "2026-11-23 14:44 UTC",
  "courses": [
   {
    "name": "da2402",
@@ -8,7 +8,7 @@
    "description": "Course Materials for DA2402",
    "url": "/da2402/",
    "repo": "https://github.com/iitm-da/da2402",
-   "updated": "2026-11-07"
+   "updated": "2026-11-22"
   },
   {
    "name": "da5500w",
@@ -24,7 +24,7 @@
    "description": "AI for Finance",
    "url": "/finance-ml/",
    "repo": "https://github.com/iitm-da/finance-ml",
-   "updated": "2026-11-22"
+   "updated": "2026-11-23"
   }
  ]
 }
