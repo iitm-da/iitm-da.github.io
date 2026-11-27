@@ -1,7 +1,15 @@
 {
  "org": "iitm-da",
- "generated": "2026-11-26 13:56 UTC",
+ "generated": "2026-11-27 10:21 UTC",
  "courses": [
+  {
+   "name": "ai-for-defence",
+   "code": "AI-FOR-DEFENCE",
+   "description": "AI for Defence",
+   "url": "/ai-for-defence/",
+   "repo": "https://github.com/iitm-da/ai-for-defence",
+   "updated": "2026-11-27"
+  },
   {
    "name": "da2402",
    "code": "DA2402",
